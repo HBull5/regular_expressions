@@ -266,5 +266,155 @@ $pattern.test('helllo');
 
 $pattern.test('helo');
 // return false
+
+$pattern = /hel{2,}o/;
+
+$pattern.test('hello');
+// return true
+
+$pattern.test('helllllllllllllllo');
+// return true
+
+$pattern.test('helo');
+// return false
 ```
 
+## Grouping 
+
+### () : Groups expressions together, commonly used with quantifiers
+
+```js
+var $pattern = /([0-9]x){3}/;
+
+$pattern.test('1x2x3x');
+// return true
+
+$pattern.test('3x3x3x3x');
+// return true
+
+$patter = /^([0-9]x){3}$/;
+
+$pattern.test('3x3x3x3x');
+// return false
+```
+
+## Word Characters
+
+### \w : word character alphanumeric or _
+
+```js
+var $pattern = /\w/;
+
+$pattern.exec('hello world');
+// return [ 'h', index: 0, input: 'hello world', groups: undefined ]
+
+$pattern = /\w+/; // + : one or more
+
+$pattern.exec('hello world');
+// return [ 'hello', index: 0, input: 'hello world', groups: undefined ]
+
+$pattern.exec('');
+// return null
+```
+
+### \W : match an NON word or alphanumeric character 
+
+```js
+var $pattern = /\W/;
+
+$pattern.test('1');
+// return false
+
+$pattern.test('a');
+// return false
+
+$pattern.test('_');
+// return false
+
+$pattern.test(' ');
+// return true
+
+$pattern.test('$');
+// return true
+```
+
+### \d : match any digit
+
+```js
+var $pattern = /\d/;
+
+$pattern.exec('1234');
+// return [ '1', index: 0, input: '1234', groups: undefined ]
+
+$patter.exec('abc');
+// return null
+
+$pattern = /\d+/; // + : one or more
+
+$pattern.exec('1234');
+// return [ '1234', index: 0, input: '1234', groups: undefined ]
+
+$pattern.exec('1234 5678');
+// return [ '1234', index: 0, input: '1234 5678', groups: undefined ]
+```
+
+### \D : match any NON digit
+
+```js
+var $pattern = /\D/;
+
+$pattern.test('abc');
+// return true
+
+$pattern.test('123');
+// return false
+```
+
+### \s : match whitespace characters
+
+```js
+var $pattern = /\s/;
+
+$pattern.test('');
+// return false
+
+$pattern.test(' '); // <- thats a space
+// return true
+
+$patter.test('  '); // <- thats a tab
+// return true
+```
+
+### /S : match any NON whitespace characters
+
+```js
+var $pattern = /\S/;
+
+$pattern.test(' ');
+// return falase
+
+$pattern.test('abc');
+// return true
+```
+
+### \b : word boundary, if anything follows the boundary it is NOT a match
+
+```js
+var $pattern = /hell\b/i;
+
+$pattern.exec('Hello, welcome to Hell');
+// return [ 'Hell', index: 17, input: 'Hello welcome to Hell', groups: undefined ]
+
+$pattern = /hell/i;
+
+$pattern.exec('Hello, welcome to Hell');
+// return [ 'Hell', index: 0, input: 'Hello welcome to Hell', groups: undefined ]
+
+$pattern = /\bhell/i;
+
+$patter.exec('somethinghell');
+// return null
+
+$pattern.exec('hellsomething');
+// return [ 'hell', index: 0, input: 'hellsomething', groups: undefined ]
+```

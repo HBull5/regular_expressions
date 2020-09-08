@@ -41,9 +41,13 @@ var $pattern = /hello/g;
 // result = $pattern.exec('hello there hello');
 // returns
 
-result = $pattern.exec('hello');
+result = $pattern.exec('hello world');
 // returns
 
 // WTF? https://stackoverflow.com/questions/11270302/javascript-how-to-get-multiple-matches-in-regex-exec-results
+
+$pattern = /\bhell/i;
+
+result = $pattern.exec('hellsomething');
 
 console.log(result);
