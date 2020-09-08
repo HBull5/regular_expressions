@@ -180,3 +180,91 @@ $pattern.test('gray?');
 $pattern.test('gray');
 // returns false
 ```
+
+## Character Sets
+
+### [] : Must be any of the available options
+
+```js
+var $pattern = /gr[ae]y/;
+
+$pattter.test('gray');
+// returns true
+
+$pattern.test('grey');
+// returns true
+
+$pattern.test('gry');
+// returns false
+
+$pattern.test('grwy');
+// returns false
+```
+
+### [^] : Match anything except the available options
+
+```js
+var $pattern = /[^gf]ray/;
+
+$pattern.test('gray');
+// returns false
+
+$pattern.test('fray');
+// returns false
+
+$pattern.test('xray');
+// returns true
+```
+
+### [{} - {}] : match anything 
+
+```js
+var $pattern = /[A-Z]ray/;
+
+$pattern.test('Xray');
+// returns true
+
+$pattern.test('xray');
+// returns false
+
+$pattern = /[A-Za-z]/;
+
+$pattern.test('xray');
+// returns true
+
+$pattern.test('Xray');
+// returns true
+
+$pattern = /[0-9]ray/;
+
+$pattern.test('9ray');
+// returns true
+
+$pattern.test('xray');
+// return false
+
+$pattern = /[0-9][0-9]ray/;
+
+$pattern.test('99ray');
+// return true
+```
+
+## Quantifiers
+
+### symbol{min, max} : match the number of symbols specified before the curly brackets
+
+```js
+var $pattern = /hel{2}o/i;
+
+$pattern.test('hello');
+// return true
+
+$pattern = /hel{2, 4}o/i;
+
+$pattern.test('helllo');
+// return true
+
+$pattern.test('helo');
+// return false
+```
+
