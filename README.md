@@ -418,3 +418,28 @@ $patter.exec('somethinghell');
 $pattern.exec('hellsomething');
 // return [ 'hell', index: 0, input: 'hellsomething', groups: undefined ]
 ```
+
+## Assertions 
+
+## ?= : Must follow after preceeding character
+
+```js
+var $pattern = /x(?=y)/;
+
+$pattern.test('x');
+// return false
+
+$pattern.test('xy');
+// return true
+
+$pattern.test('abcxyabc');
+// return true
+
+$pattern = /x(?!y)/; // ! : not equal
+
+$pattern.test('xy');
+// return false
+
+$pattern.test('xabcy');
+// return ture
+```
